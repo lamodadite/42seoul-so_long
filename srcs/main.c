@@ -16,21 +16,13 @@ int	key_hook(int keycode, t_info *info)
 		exit(0);
 	}
 	else if (keycode == 2)
-	{
 		info->hero_y += 1;
-	}
 	else if (keycode == 0)
-	{
 		info->hero_y -= 1;
-	}
 	else if (keycode == 13)
-	{
 		info->hero_x -= 1;
-	}
 	else if (keycode == 1)
-	{
 		info->hero_x += 1;
-	}
 	if (info->map[info->hero_x][info->hero_y] == '1')
 	{
 		info->hero_x = origin_x;
@@ -39,14 +31,13 @@ int	key_hook(int keycode, t_info *info)
 	else if (info->map[info->hero_x][info->hero_y] == 'C')
 	{
 		info->map[info->hero_x][info->hero_y] = '0';
-		info->collect_cur++;
 		mlx_clear_window(info->mlx, info->mlx_win);
 		info->move_cnt++;
-		ft_printf("collect_cur -> %d\n", info->collect_cur);
+		ft_printf("collect_cur -> %d\n", info->collect_cnt);
 		ft_printf("%d\n", info->move_cnt);
 		init_map(info);
 	}
-	else if (info->map[info->hero_x][info->hero_y] == 'E' && info->collect_cur == info->collect_max)
+	else if (info->map[info->hero_x][info->hero_y] == 'E' && info->collect_cnt == 0)
 	{
 		mlx_destroy_window(info->mlx, info->mlx_win);
 		exit(0);
@@ -55,7 +46,7 @@ int	key_hook(int keycode, t_info *info)
 	{
 		mlx_clear_window(info->mlx, info->mlx_win);
 		info->move_cnt++;
-		ft_printf("collect_cur -> %d\n", info->collect_cur);
+		ft_printf("collect_cur -> %d\n", info->collect_cnt);
 		ft_printf("%d\n", info->move_cnt);
 		init_map(info);
 	}
@@ -68,7 +59,7 @@ void	put_element(t_info *info, int x, int y)
 		mlx_put_image_to_window(info->mlx, info->mlx_win, info->img_wall, y * TILE_SIZE, x * TILE_SIZE);
 	else if (info->map[x][y] == 'C')
 	{
-		info->collect_max++;
+		info->collect_cnt++;
 		mlx_put_image_to_window(info->mlx, info->mlx_win, info->img_collect, y * TILE_SIZE, x * TILE_SIZE);
 	}
 	else if (info->map[x][y] == 'E')
@@ -86,6 +77,7 @@ void	init_map(t_info *info)
 	int	j;
 
 	i = -1;
+	info->collect_cnt = 0;
 	while (++i < info->map_height)
 	{
 		j = -1;

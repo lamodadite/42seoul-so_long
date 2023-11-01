@@ -25,8 +25,7 @@ typedef struct s_info
 	void	*img_empty;
 	int		hero_x;
 	int		hero_y;
-	int		collect_max;
-	int		collect_cur;
+	int		collect_cnt;
 	int		move_cnt;
 }	t_info;
 
