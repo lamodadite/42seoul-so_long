@@ -53,7 +53,7 @@ int	key_hook(int keycode, t_vars *vars)
 int	main(void)
 {
 	t_vars	vars;
-	char	*relative_path = "./images.xpm";
+	char	*relative_path = "./textures/images.xpm";
 
 	vars.mlx = mlx_init();
 	vars.win = mlx_new_window(vars.mlx, 1440, 1080, "mario");
