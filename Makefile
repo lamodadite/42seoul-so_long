@@ -1,4 +1,4 @@
-SRCS 	= srcs/main.c srcs/utils.c srcs/get_next_line.c srcs/get_next_line_utils.c
+SRCS 	= srcs/so_long.c srcs/utils.c srcs/get_next_line.c srcs/get_next_line_utils.c srcs/map.c srcs/move.c srcs/exit.c
 OBJS	= $(SRCS:%.c=%.o)
 NAME	= a.out
 CC		= cc
