@@ -1,12 +1,11 @@
-SRCS 	= srcs/so_long.c srcs/utils.c srcs/get_next_line.c srcs/get_next_line_utils.c srcs/map.c srcs/move.c srcs/exit.c
+SRCS 	= srcs/so_long.c srcs/utils.c srcs/get_next_line.c srcs/get_next_line_utils.c srcs/map.c srcs/move.c srcs/exit.c srcs/check.c
 OBJS	= $(SRCS:%.c=%.o)
-NAME	= a.out
+NAME	= so_long
 CC		= cc
 RM		= rm -f
 CFLAGS	= -Wall -Wextra -Werror
 CLIB	= -Lmlx -lmlx -framework OpenGL -framework Appkit
 PRINTF	= ./ft_printf/libftprintf.a
-#LIBFT	= ./libft/libft.a
 
 all: $(NAME)
 
@@ -19,21 +18,16 @@ $(NAME): $(PRINTF) $(OBJS)
 $(PRINTF):
 	make -C ./ft_printf
 
-#$(LIBFT):
-#	make -C ./libft
-
 bonus :
 	make all
 
 clean:
 	$(RM) $(OBJS) $(OBJS_BNS)
 	@make -C ./ft_printf clean
-#	@make -C ./libft clean
 
 fclean: clean
 	$(RM) $(NAME)
 	@make -C ./ft_printf fclean
-#	@make -C ./libft fclean
 
 re: fclean all
 
