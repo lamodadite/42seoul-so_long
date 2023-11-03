@@ -6,7 +6,7 @@
 /*   By: jongmlee <jongmlee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/03 14:31:37 by jongmlee          #+#    #+#             */
-/*   Updated: 2023/11/03 14:37:36 by jongmlee         ###   ########.fr       */
+/*   Updated: 2023/11/03 15:48:24 by jongmlee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,8 +87,9 @@ void	check_rectangle(t_info *info)
 				return ;
 			}
 		}
-		else if (len - 1 != info->map_w)
+		else if (len - 1 != info->map_w) 
 		{
+			ft_printf("i -> %d\nlen -> %d\ninfo->map_w -> %d\n", i, len, info->map_w);
 			free_error_exit(MAP_ERROR, info, 0);
 			return ;
 		}
