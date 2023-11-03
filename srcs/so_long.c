@@ -1,29 +1,6 @@
 #include "so_long.h"
 #include "get_next_line.h"
 
-int	key_hook(int keycode, t_info *info)
-{
-	int origin_x;
-	int	origin_y;
-
-	origin_x = info->hero_x;
-	origin_y = info->hero_y;
-	if (keycode == 53)
-		destroy_window_exit(info);
-	else if (keycode == 2)
-		info->hero_y += 1;
-	else if (keycode == 0)
-		info->hero_y -= 1;
-	else if (keycode == 13)
-		info->hero_x -= 1;
-	else if (keycode == 1)
-		info->hero_x += 1;
-	else
-		return (0);
-	move(info, origin_x, origin_y);
-	return (0);
-}
-
 void init_image(t_info *info)
 {
 	info->img_hero = mlx_xpm_file_to_image(info->mlx, "./textures/hero.xpm", &info->img_size, &info->img_size);
@@ -36,7 +13,7 @@ void init_image(t_info *info)
 void	init_mlx(t_info *info)
 {
 	info->mlx = mlx_init();
-	info->mlx_win = mlx_new_window(info->mlx, info->map_width * TILE_SIZE, info->map_height * TILE_SIZE, "so_long");
+	info->mlx_win = mlx_new_window(info->mlx, info->map_w * TILE_SIZE, info->map_h * TILE_SIZE, "so_long");
 }
 
 int	main(int ac, char **av)
@@ -45,8 +22,8 @@ int	main(int ac, char **av)
 
 	if (ac != 2)
 		error_exit(ARG_ERROR);
-	// map valid check & load
 	load_map(&info, av[1]);
+	check_map(&info);
 	init_mlx(&info);
 	init_image(&info);
 	init_map(&info);

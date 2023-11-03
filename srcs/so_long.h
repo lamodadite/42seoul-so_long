@@ -7,17 +7,21 @@
 # include <unistd.h>
 # include <stdio.h>
 
+# define MSB_VAL 0x80
 # define TILE_SIZE 64
 # define MALLOC_ERROR "malloc failed"
 # define ARG_ERROR "invalid argument"
+# define MAP_ERROR "invalid map"
+
+# define MSB(char_var) (char_var & 0x7F)
 
 
 typedef struct s_info
 {
 	char	**map;
 	char	*map_path;
-	int		map_width;
-	int		map_height;
+	int		map_w;
+	int		map_h;
 	int		img_size;
 	void	*mlx;
 	void	*mlx_win;
@@ -29,8 +33,18 @@ typedef struct s_info
 	int		hero_x;
 	int		hero_y;
 	int		c_cnt;
+	int		e_cnt;
+	int		p_cnt;
+	int		flag;
 	int		move_cnt;
+	int		top;
 }	t_info;
+
+typedef struct s_point
+{
+	int	x;
+	int	y;
+}	t_point;
 
 size_t	ft_strlen(const char *s);
 void	init_map(t_info *info);
@@ -43,6 +57,7 @@ void	put_element(t_info *info, int x, int y);
 void	move(t_info *info, int origin_x, int origin_y);
 int		ft_printf(const char *str, ...);
 int		key_hook(int keycode, t_info *info);
-
+void	check_map(t_info *info);
+void	push(t_point *stack, t_info *info, int x, int y);
 
 #endif
