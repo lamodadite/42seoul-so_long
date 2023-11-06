@@ -3,7 +3,7 @@ OBJS	= $(SRCS:%.c=%.o)
 NAME	= so_long
 CC		= cc
 RM		= rm -f
-CFLAGS	= -Wall -Wextra -Werror 
+CFLAGS	= -Wall -Wextra -Werror
 CLIB	= -Lmlx -lmlx -framework OpenGL -framework Appkit
 PRINTF	= ./ft_printf/libftprintf.a
 

@@ -6,7 +6,7 @@
 /*   By: jongmlee <jongmlee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/03 14:20:57 by jongmlee          #+#    #+#             */
-/*   Updated: 2023/11/03 14:40:21 by jongmlee         ###   ########.fr       */
+/*   Updated: 2023/11/06 17:00:04 by jongmlee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@
 # define MALLOC_ERROR "malloc failed"
 # define ARG_ERROR "invalid argument"
 # define MAP_ERROR "invalid map"
+# define EXTENSION_NAME ".ber"
 
 typedef struct s_info
 {
@@ -71,5 +72,6 @@ void	check_rectangle(t_info *info);
 char	msb(char var);
 void	free_error_exit(char *message, t_info *info, int i);
 void	free_map(t_info *info, int idx);
+void	check_extension(char *map_path);
 
 #endif

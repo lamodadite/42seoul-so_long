@@ -6,7 +6,7 @@
 /*   By: jongmlee <jongmlee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/03 14:20:41 by jongmlee          #+#    #+#             */
-/*   Updated: 2023/11/03 22:55:07 by jongmlee         ###   ########.fr       */
+/*   Updated: 2023/11/06 19:41:56 by jongmlee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,22 +33,16 @@ void	init_mlx(t_info *info)
 			info->map_h * TILE_SIZE, "so_long");
 }
 
-int close_window(void *param) {
-	(void)param;
-
-	exit(0);
-}
-
-void	leaks()
+int	close_window(void *param)
 {
-	system("leaks so_long");
+	free_map(param, 0);
+	exit(0);
 }
 
 int	main(int ac, char **av)
 {
 	t_info	info;
 
-	atexit(leaks);
 	if (ac != 2)
 		error_exit(ARG_ERROR);
 	load_map(&info, av[1]);

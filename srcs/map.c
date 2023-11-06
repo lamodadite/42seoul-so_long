@@ -6,7 +6,7 @@
 /*   By: jongmlee <jongmlee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/03 14:20:01 by jongmlee          #+#    #+#             */
-/*   Updated: 2023/11/03 14:20:02 by jongmlee         ###   ########.fr       */
+/*   Updated: 2023/11/06 18:34:08 by jongmlee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@ void	load_map(t_info *info, char *map_path)
 	int		i;
 
 	i = -1;
+	check_extension(map_path);
 	get_map_size(info, map_path);
 	info->map = (char **)malloc(info->map_h * sizeof(char *));
 	if (info->map == NULL)

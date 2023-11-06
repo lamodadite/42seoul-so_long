@@ -6,7 +6,7 @@
 /*   By: jongmlee <jongmlee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/03 14:31:37 by jongmlee          #+#    #+#             */
-/*   Updated: 2023/11/03 15:48:24 by jongmlee         ###   ########.fr       */
+/*   Updated: 2023/11/06 18:26:49 by jongmlee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,19 +79,41 @@ void	check_rectangle(t_info *info)
 		len = ft_strlen(info->map[i]);
 		if (i == info->map_h - 1)
 		{
-			if (len == info->map_w && info->map[i][len - 1] == '\n')
+			if (len == info->map_w)
 				continue ;
-			if (len == info->map_w + 1 && info->map[i][len - 1] != '\n')
-			{
-				free_error_exit(MAP_ERROR, info, 0);
-				return ;
-			}
+			if (len - 1 == info->map_w && info->map[i][len - 1] == '\n')
+				continue ;
+			free_error_exit(MAP_ERROR, info, 0);
 		}
-		else if (len - 1 != info->map_w) 
+		if (len - 1 != info->map_w)
 		{
-			ft_printf("i -> %d\nlen -> %d\ninfo->map_w -> %d\n", i, len, info->map_w);
 			free_error_exit(MAP_ERROR, info, 0);
 			return ;
 		}
+	}
+}
+
+void	check_extension(char *map_path)
+{
+	int		i;
+	int		j;
+	char	*extension;
+
+	i = 0;
+	j = 0;
+	while (map_path[i] != '\0')
+		i++;
+	if (i < 4)
+		error_exit(MAP_ERROR);
+	extension = EXTENSION_NAME;
+	while (j < 4)
+	{
+		if (map_path[i - 4] != extension[j])
+		{
+			error_exit(MAP_ERROR);
+			return ;
+		}
+		i++;
+		j++;
 	}
 }
